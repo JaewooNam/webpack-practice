@@ -2,13 +2,18 @@ const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 // To extract css file and save a file
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.js",
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname + "/build")
+  },
+  devServer: {
+    contentBase: path.resolve("./build"),
+    index: "index.html",
+    port: 9000
   },
   mode: "none",
   /*
@@ -57,7 +62,8 @@ module.exports = {
       filename: 'index.html' // printed output is index.html
     }),
     new MiniCssExtractPlugin({
-      filename: 'style.css'
-    })
+      filename: 'style-test.css'
+    }),
+    new CleanWebpackPlugin()
   ]
 };
