@@ -1,10 +1,10 @@
-import path from 'path'
+const path = require("path");
 
-export default {
-  entry: './src/test.js', // file to build
-  output: { // If finished building, create file through this info
-    filename: 'bundle.js',
-    path: path.resolve(__dirname + '/build')
+module.exports = {
+  entry: "./src/test.js",
+  output: {
+    filename: "bundle.js",
+    path: path.resolve(__dirname + "/build")
   },
-  mode: 'none' // build option (production(optimized), development(fast), none)
-}
+  mode: "none"
+};
