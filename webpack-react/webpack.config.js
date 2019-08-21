@@ -1,5 +1,8 @@
 const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+// To extract css file and save a file
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 
 module.exports = {
   entry: "./src/index.js",
@@ -40,7 +43,11 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['css-loader']
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
+      },
+      {
+        test: /\.scss$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
       }
     ]
   },
@@ -48,6 +55,9 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: './public/index.html', // Read public/index.html
       filename: 'index.html' // printed output is index.html
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'style.css'
     })
   ]
 };
